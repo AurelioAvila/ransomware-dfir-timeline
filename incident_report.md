@@ -48,7 +48,7 @@ Full output: [`timeline_report.txt`](timeline_report.txt), raw export: [`timelin
 | T+2:20 onward | Mass rename to `.locked` across local + share directories | T1486 — Data Encrypted for Impact |
 | T+~5:00 | `README_DECRYPT.txt` dropped in every affected directory | T1491.001 — Internal Defacement (extortion notice) |
 
-Total time from the malicious attachment being opened to the first encrypted file: **under 2 minutes and 20 seconds.**
+Total time from the malicious attachment being opened to the first encryption action: **2 minutes and 20 seconds.**
 
 ## 4. Root cause
 
