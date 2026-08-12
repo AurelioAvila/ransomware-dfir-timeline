@@ -1,0 +1,18 @@
+[
+  {
+    "hive": "HKCU",
+    "key": "Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+    "value_name": "OneDriveSync",
+    "value_data": "C:\\Program Files\\Microsoft OneDrive\\OneDrive.exe /background",
+    "last_write": "2026-02-27T09:14:00",
+    "legitimate": true
+  },
+  {
+    "hive": "HKCU",
+    "key": "Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+    "value_name": "WindowsSvcHelper",
+    "value_data": "C:\\Users\\j.morales\\AppData\\Local\\Temp\\svchost_upd.exe -silent",
+    "last_write": "2026-03-11T09:15:00",
+    "legitimate": false
+  }
+]

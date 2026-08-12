@@ -1,0 +1,30 @@
+[
+  {
+    "file": "WINWORD.EXE-3F2A1B0C.pf",
+    "path": "C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
+    "run_count": 214,
+    "first_run": "2026-01-30T09:14:00",
+    "last_run": "2026-03-11T09:14:00"
+  },
+  {
+    "file": "POWERSHELL.EXE-9A7C4E11.pf",
+    "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "run_count": 3,
+    "first_run": "2026-03-11T09:14:41",
+    "last_run": "2026-03-11T09:14:41"
+  },
+  {
+    "file": "SVCHOST_UPD.EXE-1D5B8F02.pf",
+    "path": "C:\\Users\\j.morales\\AppData\\Local\\Temp\\svchost_upd.exe",
+    "run_count": 1,
+    "first_run": "2026-03-11T09:14:58",
+    "last_run": "2026-03-11T09:14:58"
+  },
+  {
+    "file": "VSSADMIN.EXE-6C3E9A44.pf",
+    "path": "C:\\Windows\\System32\\vssadmin.exe",
+    "run_count": 2,
+    "first_run": "2025-08-23T09:14:00",
+    "last_run": "2026-03-11T09:15:15"
+  }
+]
