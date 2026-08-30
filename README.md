@@ -1,5 +1,7 @@
 # Ransomware DFIR Timeline — SOC Home Lab
 
+[![CI](https://github.com/AurelioAvila/ransomware-dfir-timeline/actions/workflows/ci.yml/badge.svg)](https://github.com/AurelioAvila/ransomware-dfir-timeline/actions/workflows/ci.yml)
+
 A Tier 1 SOC / Incident Responder workflow for digital forensics: correlating
 multiple independent endpoint artifact sources (process creation, Prefetch,
 Registry persistence, filesystem activity) into a single, MITRE-mapped
