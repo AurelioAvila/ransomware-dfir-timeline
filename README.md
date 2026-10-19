@@ -66,7 +66,7 @@ blast radius. Real DFIR work is stitching these together into one timeline
     ransomware-dfir-timeline/
     ├── generate_artifacts.py    # builds the 4 synthetic artifact sources
     ├── timeline_builder.py      # correlates + classifies + renders the report
-    ├── incident_report.md       # full analyst write-up (root cause, recommendations)
+    ├── docs/incident_report.md  # full analyst write-up (root cause, recommendations)
     ├── artifacts/                # generated: process/prefetch/registry/filesystem sources
     ├── timeline_report.txt       # generated: rendered timeline report
     ├── timeline.csv              # generated: combined timeline export
